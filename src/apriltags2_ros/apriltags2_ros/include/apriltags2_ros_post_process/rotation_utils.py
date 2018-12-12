@@ -80,7 +80,12 @@ def camxTveh(tOvehOcamx):
     return camx_T_veh
 
 def tagTworld():
-    """ Returns homogeneous transformation that expresses world_p in tag frame. """
+    """ Returns homogeneous transformation that expresses world_p in tag frame.
+
+    Returns:
+        tag_T_world (numpy.array): homogeneous transformation that expresses world_p in tag cf
+
+    """
     T_x = tr.rotation_matrix(-math.pi / 2, [1, 0, 0])
     T_z = tr.rotation_matrix(math.pi / 2, [0, 0, 1])
 
@@ -90,15 +95,17 @@ def tagTworld():
 
 def robot_pose_in_word_frame(q_at,t_at):
     """
-    expresses the apriltags2_ros output in robot cf.
+    expresses the apriltags2_ros output in world cf.
 
     Args:
         q_at (numpy.array): quaternion representing relative orientation of camera frame with respect to tag frame.
         t_at (numpy.array): translation vector from cameras cf to tags cf expressed in camera cf.
 
     Returns:
-        veh_R_world (numpy.array): rotation matrix orientation that expresses world_p in robot cf.
-        veh_t_world (numpy.array): translation vector from robots cf to apriltag's cf expressed in robot cf.
+        2-element tuple containing
+
+        - **veh_R_world** (*numpy.array*) - veh_R_world, rotation matrix that expresses world_p in robot cf.
+        - **veh_t_world** (*numpy.array*) - translation vector from robot's cf to apriltag's cf expressed in robot cf.
     """
 
     tOvehOcamx = np.array([0.10,0.0,0.05])

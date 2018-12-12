@@ -56,3 +56,21 @@ To inspect the orientation expressed in Euler Angles
 ```shell
 [APRILTAG_ADDON_CONTAINER] rostopic echo ![ROBOT_NAME]/apriltags2_ros/publish_detections_in_local_frame/tag_detections_local_frame
 ```
+
+## Documentation
+
+This project uses sphinx to generate project documentation automatically.
+
+To start generating documents you have to first install sphinx
+
+```shell
+sudo apt-get install python-sphinx
+```
+generate the documentation
+
+```shell
+cd ![APRILTAG_ADDON_ROOT]/src/apriltags2_ros/apriltags2_ros/docs
+make html
+```
+
+click to open the generated document which is located at `![APRILTAG_ADDON_ROOT]/fapriltag2_addon/src/apriltags2_ros/apriltags2_ros/docs/build/html`
