@@ -8,35 +8,35 @@ from apriltags2_ros_post_process.rotation_utils import *
 class RotationUtils(unittest.TestCase):
 
     def test_col(self):
-        """
+        '''
         tests whether a numpy singleton is converted into a column array correctly,
         (technically a numpy matrix of shape (n,1)).
-        """
+        '''
         v = np.array([1,2,3])
         v_col = col(v)
         self.assertEqual(v_col.shape, (3,1))
 
     def test_row(self):
-        """
+        '''
         tests whether a numpy singleton is converted into a row array correctly,
         (technically a numpy matrix of shape (1,n)).
-        """
+        '''
         v = np.array([1,2,3])
         v_row = row(v)
         self.assertEqual(v_row.shape, (1,3))
 
     def test_inverse_homogenous_transform_trivial(self):
-        """
+        '''
         tests whether inverse_homogeneous_transform yields  T = inv(T) when T is the identity matrix.
-        """
+        '''
         T = tr.identity_matrix()
         T_inv = inverse_homogeneous_transform(T)
         np.testing.assert_almost_equal(T,T_inv)
 
     def test_inverse_homogenous_transform_non_zero_translation(self):
-        """
+        '''
         tests whether inverse_homogeneous_transform performs the inversion correctly for T with non-zero translation vector.
-        """
+        '''
         T = tr.identity_matrix()
         T[0:3,3] = np.array([1,1,1])
 
@@ -47,10 +47,10 @@ class RotationUtils(unittest.TestCase):
         np.testing.assert_almost_equal(T_inv, T_inv_expected)
 
     def test_inverse_homogenous_transform_translation_rotation(self):
-        """
+        '''
         tests whether inverse_homogeneous_transform performs the inversion correctly for
         T with non-zero translation vector and a non-identity rotation matrix.
-        """
+        '''
         # Spesifically tests matrix inversion used in the function.
         a_T_b = tr.identity_matrix()
         a_T_b[0:3,0:3] = np.array([[0,-1,0],[1,0,0],[0,0,1]]) # rotation around z axis by 90 degrees. frame B is rotated with respect to az
@@ -64,9 +64,9 @@ class RotationUtils(unittest.TestCase):
         np.testing.assert_almost_equal(T_inv, b_T_a_exp)
 
     def test_camzTcamx(self):
-        """
+        '''
         tests wether camz_T_camx returns homogeneous transformation that expresses camx_p in camz frame.
-        """
+        '''
         camx_p = np.array([1,2,3,1])
         camz_T_camx = camzTcamx()
         camz_p = np.matmul(camz_T_camx, camx_p)
@@ -74,7 +74,14 @@ class RotationUtils(unittest.TestCase):
         camz_p_exp = np.array([-2, -3, 1, 1])
 
         np.testing.assert_almost_equal(camz_p, camz_p_exp)
+    """
+    def test_get_robot_pose(self):
+        q = [0.9585 0.0263 -0.2431 -0.1467]
+        t = [0.016 -0.041 0.295]
 
+        veh_R_tag, veh_t_tag = get_robot_pose(q,t)
+
+    """
     def test_euler_XYZ_from_rotation_matrix(self):
         """
         r in 'rxyz' is 'r'otating frames indicating rotations are applied consecutively with respect to current
