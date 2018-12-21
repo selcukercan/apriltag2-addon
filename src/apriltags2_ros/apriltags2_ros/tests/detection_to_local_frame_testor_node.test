@@ -2,7 +2,7 @@
     <arg name="pkg_name" value="apriltags2_ros"/>
     <arg name="node_name" default="detection_to_local_frame_testor_node"/>
 
-    <arg name="veh" default="testbot" doc="Name of vehicle. ex: megaman"/>
+    <arg name="veh" default="testbot"/>
     <arg name="path" default="$(find apriltags2_ros)/tests/test_images" />
     <arg name="am_p" default="10" />
     <arg name="am_r" default="10" />
@@ -12,7 +12,7 @@
     <include file="$(find apriltags2_ros)/launch/apriltag_detector_node.launch">
         <arg name="veh" value="$(arg veh)"/>
     </include>
-    
+
     <!--detection_to_local_frame Node-->
 	<include file="$(find apriltags2_ros)/launch/detection_to_local_frame.launch">
 		<arg name="veh" value="$(arg veh)"/>
