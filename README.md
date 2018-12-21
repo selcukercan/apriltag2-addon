@@ -7,7 +7,6 @@ This package provide `detection_post_process.launch` to analyze the performance 
 * time used for each subprocess in the pipeline of relative pose estimation (detecting AprilTag + computing relative pose).
 * cpu/ram comsumption for relative pose estimation.
 
-click to open the generated document which is located at `![APRILTAG_ADDON_ROOT]/fapriltag2_addon/src/apriltags2_ros/apriltags2_ros/docs/build/html`
 =======
 1. `catkin_make`
 2. `source devel/setup.bash`
@@ -114,3 +113,5 @@ generate the documentation
 cd ![APRILTAG_ADDON_ROOT]/src/apriltags2_ros/apriltags2_ros/docs
 make html
 ```
+
+click to open the generated document which is located at `![APRILTAG_ADDON_ROOT]/fapriltag2_addon/src/apriltags2_ros/apriltags2_ros/docs/build/html`
